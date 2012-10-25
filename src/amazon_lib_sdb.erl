@@ -15,8 +15,13 @@ put(Key, Attributes) ->
     erlcloud_sdb:put_attributes(?DOMAIN, Key, Attributes, [], EC2).
 
 get(Key) ->
-    EC2 = amazon_lib:init_ec2conn(),
-    erlcloud_sdb:get_attributes(?DOMAIN, Key, EC2).
+    case Key =/= "" of
+        true ->
+            EC2 = amazon_lib:init_ec2conn(),
+            erlcloud_sdb:get_attributes(?DOMAIN, Key, EC2);
+        false ->
+            [{attributes,[]}, undefined]
+    end.
 
 delete(Key) ->
     EC2 = amazon_lib:init_ec2conn(),
