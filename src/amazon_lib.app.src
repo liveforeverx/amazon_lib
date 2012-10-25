@@ -1,7 +1,6 @@
 {application, amazon_lib, [
     {description, ""},
     {vsn, ["0.0"]},
-    {mod, {amazon_lib, []}},
     {applications, [kernel, stdlib, erlcloud]},
     {registered, []},
     {env, [{api_key, "api_key"},
